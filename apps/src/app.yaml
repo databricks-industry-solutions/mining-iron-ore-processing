@@ -1,0 +1,15 @@
+command:
+- streamlit
+- run
+- app.py
+env:
+- name: DATABRICKS_WAREHOUSE_ID
+  valueFrom: sql-warehouse
+- name: STREAMLIT_BROWSER_GATHER_USAGE_STATS
+  value: 'false'
+- name: TABLE_NAME
+  value: ${resources.schemas.mining-processing-demo.catalog_name}.${resources.schemas.mining-processing-demo.name}.gold_iop_features_version_demo
+- name: FE_ENDPOINT_NAME
+  value: ${resources.schemas.mining-processing-demo.name}-fe_model-serving-endpoint
+- name: SI_ENDPOINT_NAME
+  value: ${resources.schemas.mining-processing-demo.name}-si_model-serving-endpoint

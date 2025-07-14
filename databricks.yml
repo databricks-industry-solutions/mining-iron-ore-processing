@@ -21,11 +21,18 @@ targets:
 
 # See more about resource configuration at https://docs.databricks.com/aws/en/dev-tools/bundles/resources
 resources:
+
+  schemas:
+      mining-processing-demo:
+        name: mining-iop-{{.unique_id}}
+        catalog_name: mining-demo
+        comment: This schema was created by Databricks Asset Bundles.
+
   apps:
     demo_app:
-      name: "demo-app"
+      name: "processing-demo-app"
       description: "Simple Streamlit demo app"
-      source_code_path: "/Users/${workspace.current_user.userName}/dbx-dabs-demo-${var.environment}/files/apps/demo_app"
+      source_code_path: "/Users/${workspace.current_user.userName}/dbx-dabs-demo-${var.environment}/files/apps/src"
 
   dashboards:
     demo_dashboard:
@@ -36,16 +43,84 @@ resources:
 # This is the installation workflow. It will be run when the bundle is deployed.
   jobs:
     demo_workflow:
-      name: "Databricks Demo Deployment Example - Two Simple Notebooks"
+      name: "deploy-iops-demo-workflow"
       tasks:
-        - task_key: notebook1
+        - task_key: create-pipeline-and-ingest
+          job_cluster_key: "default"
           notebook_task:
-            notebook_path: "./notebooks/notebook1.ipynb"
-        - task_key: notebook2
+            notebook_path: "./notebooks/demo_setup/01.create_pipeline.ipynb"
+            source: WORKSPACE
+        - task_key: create-deployment-job
+          notebook_task:
+            notebook_path: "./notebooks/demo_setup/model_deploy_jobs/create-deployment-job.py"
+            source: WORKSPACE
           depends_on:
-            - task_key: notebook1
+            - task_key: create-pipeline-and-ingest
+        - task_key: run-governance-notebook
           notebook_task:
-            notebook_path: "./notebooks/notebook2.ipynb"
+            notebook_path: "./notebooks/mining_iron_ore_processing_demo/01b. Unity Catalog, Governance and Auditability.ipynb"
+            source: WORKSPACE
+          depends_on:
+            - task_key: create-deployment-job
+        - task_key: run-eda-featurestore-notebook
+          notebook_task:
+            notebook_path: "./notebooks/mining_iron_ore_processing_demo/02. EDA and Feature Store.ipynb"
+            source: WORKSPACE
+          depends_on:
+            - task_key: run-governance-notebook
+        - task_key: run-model-creation-notebook
+          notebook_task:
+            notebook_path: "./notebooks/mining_iron_ore_processing_demo/03. Model Training and Experimentation.ipynb"
+            source: WORKSPACE
+          depends_on:
+            - task_key: run-eda-featurestore-notebook
+        - task_key: create-genie-space
+          notebook_task:
+            notebook_path: "./notebooks/demo_setup/03.create_genie_space.ipynb"
+            source: WORKSPACE
+          depends_on:
+            - task_key: run-model-creation-notebook
+        - task_key: create-app
+          notebook_task:
+            notebook_path: "./notebooks/demo_setup/04.create_app.ipynb"
+            source: WORKSPACE
+          depends_on:
+            - task_key: run-model-creation-notebook
+        - task_key: create-serving-endpoints
+          notebook_task:
+            notebook_path: "./notebooks/demo_setup/05.create_serving_endpoints.ipynb"
+            source: WORKSPACE
+          depends_on:
+            - task_key: run-model-creation-notebook
+        - task_key: run-optimization-notebook
+          notebook_task:
+            notebook_path: "./notebooks/mining_iron_ore_processing_demo/05. Optimisation.ipynb"
+            source: WORKSPACE
+          depends_on:
+            - task_key: run-model-creation-notebook
+        - task_key: enable-anomaly-detection-classification
+          notebook_task:
+            notebook_path: "./notebooks/demo_setup/06.enable_data_classification_and_anomaly_detection.ipynb"
+            source: WORKSPACE
+          depends_on:
+            - task_key: run-model-creation-notebook
+
+  pipelines:
+    example_pipeline:
+      name: "Example of a pipeline with a schema"
+
+      catalog: ${resources.schemas.mining-processing-demo.catalog_name}
+      target: ${resources.schemas.mining-processing-demo.name}
+
+      configuration:
+        catalog_name: ${resources.schemas.mining-processing-demo.catalog_name}
+        schema_name: ${var.schema_name}
+        volume_name: ${var.volume_name}
+
+      libraries:
+        - file:
+            path: "pipelines/src/01a. Data Engineering.ipynb"
+      serverless: true
 
 # Example resources you can uncomment and customize:
 # resources:
@@ -75,10 +150,6 @@ resources:
 #       configuration:
 #         your_config: "value"
 #
-#   models:
-#     your_model:
-#       name: "Your Model"
-#       model_path: "models/your_model"
 #
 #   dashboards:
 #     your_dashboard:

@@ -1,0 +1,549 @@
+{
+  "datasets": [
+    {
+      "name": "ced5d677",
+      "displayName": "gold_iron_ore_predictions",
+      "queryLines": [
+        "SELECT * FROM jack_demos.iop_schema_v2.gold_iron_ore_predictions"
+      ]
+    },
+    {
+      "name": "feb2bc89",
+      "displayName": "gold_iron_ore_optimisations",
+      "queryLines": [
+        "SELECT *  FROM jack_demos.iop_schema_v2.gold_iron_ore_optimisations\n"
+      ]
+    }
+  ],
+  "pages": [
+    {
+      "name": "32783752",
+      "displayName": "Model Performance",
+      "layout": [
+        {
+          "widget": {
+            "name": "a82aa8e9",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "ced5d677",
+                  "fields": [
+                    {
+                      "name": "date",
+                      "expression": "`date`"
+                    },
+                    {
+                      "name": "Percent_Iron_Concentrate",
+                      "expression": "`Percent_Iron_Concentrate`"
+                    },
+                    {
+                      "name": "fe_prediction",
+                      "expression": "`fe_prediction`"
+                    }
+                  ],
+                  "disaggregated": true
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "widgetType": "line",
+              "encodings": {
+                "x": {
+                  "fieldName": "date",
+                  "scale": {
+                    "type": "temporal"
+                  },
+                  "displayName": "Timestamp"
+                },
+                "y": {
+                  "scale": {
+                    "type": "quantitative"
+                  },
+                  "fields": [
+                    {
+                      "fieldName": "Percent_Iron_Concentrate",
+                      "displayName": "Actual"
+                    },
+                    {
+                      "fieldName": "fe_prediction",
+                      "displayName": "Predicted"
+                    }
+                  ],
+                  "axis": {
+                    "title": "Fe Concentrate (%)"
+                  }
+                }
+              },
+              "frame": {
+                "showTitle": true,
+                "title": "Fe Concentrate Over Time (Actual v Predicted)"
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 0,
+            "width": 3,
+            "height": 6
+          }
+        },
+        {
+          "widget": {
+            "name": "27724bd2",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "ced5d677",
+                  "fields": [
+                    {
+                      "name": "date",
+                      "expression": "`date`"
+                    },
+                    {
+                      "name": "Percent_Silica_Concentrate",
+                      "expression": "`Percent_Silica_Concentrate`"
+                    },
+                    {
+                      "name": "si_prediction",
+                      "expression": "`si_prediction`"
+                    }
+                  ],
+                  "disaggregated": true
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "widgetType": "line",
+              "encodings": {
+                "x": {
+                  "fieldName": "date",
+                  "scale": {
+                    "type": "temporal"
+                  },
+                  "displayName": "Timestamp"
+                },
+                "y": {
+                  "scale": {
+                    "type": "quantitative"
+                  },
+                  "fields": [
+                    {
+                      "fieldName": "Percent_Silica_Concentrate",
+                      "displayName": "Actual"
+                    },
+                    {
+                      "fieldName": "si_prediction",
+                      "displayName": "Predicted"
+                    }
+                  ],
+                  "axis": {
+                    "title": "Si Concentrate (%)"
+                  }
+                }
+              },
+              "frame": {
+                "showTitle": true,
+                "title": "Si Concentrate Over Time (Actual v Predicted)"
+              }
+            }
+          },
+          "position": {
+            "x": 3,
+            "y": 0,
+            "width": 3,
+            "height": 6
+          }
+        },
+        {
+          "widget": {
+            "name": "55325f87",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "ced5d677",
+                  "fields": [
+                    {
+                      "name": "Percent_Iron_Concentrate",
+                      "expression": "`Percent_Iron_Concentrate`"
+                    },
+                    {
+                      "name": "Percent_Silica_Concentrate",
+                      "expression": "`Percent_Silica_Concentrate`"
+                    }
+                  ],
+                  "disaggregated": true
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "widgetType": "scatter",
+              "encodings": {
+                "x": {
+                  "fieldName": "Percent_Iron_Concentrate",
+                  "scale": {
+                    "type": "quantitative"
+                  },
+                  "displayName": "Percent_Iron_Concentrate"
+                },
+                "y": {
+                  "fieldName": "Percent_Silica_Concentrate",
+                  "scale": {
+                    "type": "quantitative"
+                  },
+                  "displayName": "Percent_Silica_Concentrate"
+                }
+              },
+              "frame": {
+                "title": "Iron vs Silica Concentrate Relationship",
+                "showTitle": true
+              }
+            }
+          },
+          "position": {
+            "x": 3,
+            "y": 6,
+            "width": 3,
+            "height": 6
+          }
+        },
+        {
+          "widget": {
+            "name": "e1fdd2ed",
+            "multilineTextboxSpec": {
+              "lines": [
+                "# Model Performance for Fe and Si Concentrate"
+              ]
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 0,
+            "width": 6,
+            "height": 2
+          }
+        },
+        {
+          "widget": {
+            "name": "087be187",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "ced5d677",
+                  "fields": [
+                    {
+                      "name": "Percent_Silica_Concentrate",
+                      "expression": "`Percent_Silica_Concentrate`"
+                    },
+                    {
+                      "name": "Percent_Iron_Concentrate",
+                      "expression": "`Percent_Iron_Concentrate`"
+                    }
+                  ],
+                  "disaggregated": true
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "widgetType": "scatter",
+              "encodings": {
+                "x": {
+                  "fieldName": "Percent_Silica_Concentrate",
+                  "scale": {
+                    "type": "quantitative"
+                  },
+                  "displayName": "Percent_Silica_Concentrate"
+                },
+                "y": {
+                  "fieldName": "Percent_Iron_Concentrate",
+                  "scale": {
+                    "type": "quantitative"
+                  },
+                  "displayName": "Percent_Iron_Concentrate"
+                }
+              },
+              "frame": {
+                "title": "Silica vs Iron",
+                "showTitle": true
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 8,
+            "width": 3,
+            "height": 6
+          }
+        }
+      ],
+      "pageType": "PAGE_TYPE_CANVAS"
+    },
+    {
+      "name": "909296d0",
+      "displayName": "Optimisation",
+      "layout": [
+        {
+          "widget": {
+            "name": "2d2abbca",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "feb2bc89",
+                  "fields": [
+                    {
+                      "name": "hourly(date)",
+                      "expression": "DATE_TRUNC(\"HOUR\", `date`)"
+                    },
+                    {
+                      "name": "Fe_baseline",
+                      "expression": "`Fe_baseline`"
+                    },
+                    {
+                      "name": "Fe_optimised",
+                      "expression": "`Fe_optimised`"
+                    }
+                  ],
+                  "disaggregated": true
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "widgetType": "line",
+              "encodings": {
+                "x": {
+                  "fieldName": "hourly(date)",
+                  "scale": {
+                    "type": "temporal"
+                  },
+                  "displayName": "date"
+                },
+                "y": {
+                  "scale": {
+                    "type": "quantitative"
+                  },
+                  "fields": [
+                    {
+                      "fieldName": "Fe_baseline",
+                      "displayName": "Baseline"
+                    },
+                    {
+                      "fieldName": "Fe_optimised",
+                      "displayName": "Optimised"
+                    }
+                  ],
+                  "axis": {
+                    "title": "Fe Concentrate %"
+                  }
+                }
+              },
+              "frame": {
+                "showTitle": true,
+                "showDescription": false,
+                "title": "Fe Concentrate % - current vs optimised setpoints"
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 0,
+            "width": 3,
+            "height": 6
+          }
+        },
+        {
+          "widget": {
+            "name": "aba2ffb1",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "feb2bc89",
+                  "fields": [
+                    {
+                      "name": "bin(Fe_Uplift, binWidth=0_2)",
+                      "expression": "BIN_FLOOR(`Fe_Uplift`, 0.2)"
+                    },
+                    {
+                      "name": "sum(Fe_Uplift)",
+                      "expression": "SUM(`Fe_Uplift`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "widgetType": "histogram",
+              "encodings": {
+                "x": {
+                  "fieldName": "bin(Fe_Uplift, binWidth=0_2)",
+                  "scale": {
+                    "type": "quantitative",
+                    "domain": {
+                      "min": 0,
+                      "max": 2
+                    }
+                  },
+                  "displayName": "Fe Uplift"
+                },
+                "y": {
+                  "fieldName": "sum(Fe_Uplift)",
+                  "scale": {
+                    "type": "quantitative",
+                    "domain": {
+                      "min": 0
+                    }
+                  },
+                  "displayName": "Count"
+                },
+                "label": {
+                  "show": false
+                }
+              },
+              "frame": {
+                "title": "Fe Concentrate Uplift (Optimised - Baseline)",
+                "showTitle": true
+              }
+            }
+          },
+          "position": {
+            "x": 3,
+            "y": 0,
+            "width": 3,
+            "height": 6
+          }
+        },
+        {
+          "widget": {
+            "name": "22119f2e",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "feb2bc89",
+                  "fields": [
+                    {
+                      "name": "hourly(date)",
+                      "expression": "DATE_TRUNC(\"HOUR\", `date`)"
+                    },
+                    {
+                      "name": "sum(Si_baseline)",
+                      "expression": "SUM(`Si_baseline`)"
+                    },
+                    {
+                      "name": "sum(Si_optimised)",
+                      "expression": "SUM(`Si_optimised`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "widgetType": "line",
+              "encodings": {
+                "x": {
+                  "fieldName": "hourly(date)",
+                  "scale": {
+                    "type": "temporal"
+                  },
+                  "displayName": "Datetime"
+                },
+                "y": {
+                  "scale": {
+                    "type": "quantitative"
+                  },
+                  "fields": [
+                    {
+                      "fieldName": "sum(Si_baseline)",
+                      "displayName": "Baseline"
+                    },
+                    {
+                      "fieldName": "sum(Si_optimised)",
+                      "displayName": "Optimised"
+                    }
+                  ],
+                  "axis": {
+                    "title": "Si Concentrate %"
+                  }
+                }
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 6,
+            "width": 3,
+            "height": 6
+          }
+        },
+        {
+          "widget": {
+            "name": "e52ba5e2",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "ced5d677",
+                  "fields": [
+                    {
+                      "name": "Percent_Iron_Concentrate",
+                      "expression": "`Percent_Iron_Concentrate`"
+                    },
+                    {
+                      "name": "Percent_Silica_Concentrate",
+                      "expression": "`Percent_Silica_Concentrate`"
+                    }
+                  ],
+                  "disaggregated": true
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "widgetType": "scatter",
+              "encodings": {
+                "x": {
+                  "fieldName": "Percent_Iron_Concentrate",
+                  "scale": {
+                    "type": "quantitative"
+                  },
+                  "displayName": "Percent_Iron_Concentrate"
+                },
+                "y": {
+                  "fieldName": "Percent_Silica_Concentrate",
+                  "scale": {
+                    "type": "quantitative"
+                  },
+                  "displayName": "Percent_Silica_Concentrate"
+                }
+              },
+              "frame": {
+                "title": "Iron vs Silica Distribution",
+                "showTitle": true
+              }
+            }
+          },
+          "position": {
+            "x": 3,
+            "y": 6,
+            "width": 3,
+            "height": 6
+          }
+        }
+      ],
+      "pageType": "PAGE_TYPE_CANVAS"
+    }
+  ]
+}
