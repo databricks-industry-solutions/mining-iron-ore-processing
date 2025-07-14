@@ -107,7 +107,7 @@ resources:
 
   pipelines:
     demo_pipeline:
-      name: "demo_pipeline"
+      name: "Mining Iron Ore Processing DLT Pipeline"
       catalog: ${resources.schemas.mining-processing-demo.catalog_name}
       target: ${resources.schemas.mining-processing-demo.name}
       configuration:
@@ -115,9 +115,11 @@ resources:
         schema_name: ${resources.schemas.mining-processing-demo.name}
         volume_name: "mining_processing_demo_volume"
       libraries:
-        - file:
+        - notebook:
             path: "pipelines/src/01a. Data Engineering.ipynb"
       serverless: true
+      photon: true
+      development: true
 
 # Example resources you can uncomment and customize:
 # resources:
