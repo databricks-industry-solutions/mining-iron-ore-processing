@@ -45,11 +45,22 @@ resources:
     demo_workflow:
       name: "deploy-iops-demo-workflow"
       tasks:
+        - task_key: create-sql-objects
+          notebook_task:
+            notebook_path: "./notebooks/demo_setup/00a.create_sql_objects.ipynb"
+            source: WORKSPACE
+        - task_key: create-data-files
+          notebook_task:
+            notebook_path: "./notebooks/demo_setup/00b.create_data_files.ipynb"
+            source: WORKSPACE
+          depends_on:
+            - task_key: create-sql-objects
         - task_key: create-pipeline-and-ingest
-          job_cluster_key: "default"
           notebook_task:
             notebook_path: "./notebooks/demo_setup/01.create_pipeline.ipynb"
             source: WORKSPACE
+          depends_on:
+            - task_key: create-data-files
         - task_key: create-deployment-job
           notebook_task:
             notebook_path: "./notebooks/demo_setup/model_deploy_jobs/create-deployment-job.py"
