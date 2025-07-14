@@ -37,7 +37,7 @@ resources:
   dashboards:
     demo_dashboard:
       display_name: "Demo Dashboard"
-      file_path: "./dashboards/dashboard_example.lvdash.json"
+      file_path: "./dashboards/Fe Concentrator Prediction Dashboard.lvdash.json"
       warehouse_id: "${var.warehouse_id}"
 
 # This is the installation workflow. It will be run when the bundle is deployed.
@@ -106,17 +106,14 @@ resources:
             - task_key: run-model-creation-notebook
 
   pipelines:
-    example_pipeline:
-      name: "Example of a pipeline with a schema"
-
+    demo_pipeline:
+      name: "demo_pipeline"
       catalog: ${resources.schemas.mining-processing-demo.catalog_name}
       target: ${resources.schemas.mining-processing-demo.name}
-
       configuration:
         catalog_name: ${resources.schemas.mining-processing-demo.catalog_name}
-        schema_name: ${var.schema_name}
-        volume_name: ${var.volume_name}
-
+        schema_name: ${resources.schemas.mining-processing-demo.name}
+        volume_name: "mining_processing_demo_volume"
       libraries:
         - file:
             path: "pipelines/src/01a. Data Engineering.ipynb"
