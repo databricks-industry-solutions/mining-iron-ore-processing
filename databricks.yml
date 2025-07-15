@@ -1,13 +1,15 @@
 bundle:
   name: dbx-dabs-demo
 
+workspace:
+  host: https://e2-demo-field-eng.cloud.databricks.com
 
 variables:
   # The "warehouse_id" variable is used to reference the warehouse used by the dashboard.
   warehouse_id:
     lookup:
       # Replace this with the name of your SQL warehouse.
-      warehouse: "Shared Unity Catalog Serverless"
+      warehouse: "dbdemos-shared-endpoint"
       
   # Environment variable used for deployment paths
   environment:
@@ -24,8 +26,8 @@ resources:
 
   schemas:
       mining-processing-demo:
-        name: mining-iop-{{.unique_id}}
-        catalog_name: mining-demo
+        name: mining-iop-demo
+        catalog_name: jack-demos
         comment: This schema was created by Databricks Asset Bundles.
 
   apps:
