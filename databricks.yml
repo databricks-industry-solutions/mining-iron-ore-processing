@@ -27,14 +27,14 @@ resources:
   schemas:
       mining-processing-demo:
         name: mining-iop-demo
-        catalog_name: jack-demos
+        catalog_name: jack_demos
         comment: This schema was created by Databricks Asset Bundles.
 
   apps:
     demo_app:
       name: "processing-demo-app"
       description: "Simple Streamlit demo app"
-      source_code_path: "/Users/${workspace.current_user.userName}/dbx-dabs-demo-${var.environment}/files/apps/src"
+      source_code_path: "/Workspace/Users/${workspace.current_user.userName}/.bundle/${bundle.name}/${var.environment}/files/apps/src"
 
   dashboards:
     demo_dashboard:
@@ -57,18 +57,12 @@ resources:
             source: WORKSPACE
           depends_on:
             - task_key: create-sql-objects
-        - task_key: create-pipeline-and-ingest
-          notebook_task:
-            notebook_path: "./notebooks/demo_setup/01.create_pipeline.ipynb"
-            source: WORKSPACE
-          depends_on:
-            - task_key: create-data-files
         - task_key: create-deployment-job
           notebook_task:
             notebook_path: "./notebooks/demo_setup/model_deploy_jobs/create-deployment-job.py"
             source: WORKSPACE
           depends_on:
-            - task_key: create-pipeline-and-ingest
+            - task_key: create-data-files
         - task_key: run-governance-notebook
           notebook_task:
             notebook_path: "./notebooks/mining_iron_ore_processing_demo/01b. Unity Catalog, Governance and Auditability.ipynb"
@@ -90,12 +84,6 @@ resources:
         - task_key: create-genie-space
           notebook_task:
             notebook_path: "./notebooks/demo_setup/03.create_genie_space.ipynb"
-            source: WORKSPACE
-          depends_on:
-            - task_key: run-model-creation-notebook
-        - task_key: create-app
-          notebook_task:
-            notebook_path: "./notebooks/demo_setup/04.create_app.ipynb"
             source: WORKSPACE
           depends_on:
             - task_key: run-model-creation-notebook
