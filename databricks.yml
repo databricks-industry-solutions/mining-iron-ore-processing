@@ -23,7 +23,7 @@ resources:
 
   schemas:
       mining-processing-demo:
-        name: mining-iop-demo
+        name: mining_iop_demo
         catalog_name: jack_demos
         comment: This schema was created by Databricks Asset Bundles.
 
