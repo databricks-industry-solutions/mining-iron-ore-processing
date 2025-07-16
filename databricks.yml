@@ -117,7 +117,7 @@ resources:
         volume_name: "mining_processing_demo_volume"
       libraries:
         - notebook:
-            path: "pipelines/src/01a. Data Engineering.ipynb"
+            path: "notebooks/mining_iron_ore_processing_demo/01a. Data Engineering.ipynb"
       serverless: true
       photon: true
       development: true
