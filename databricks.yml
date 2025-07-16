@@ -1,9 +1,6 @@
 bundle:
   name: dbx-dabs-demo
 
-workspace:
-  host: https://e2-demo-field-eng.cloud.databricks.com
-
 variables:
   # The "warehouse_id" variable is used to reference the warehouse used by the dashboard.
   warehouse_id:
