@@ -1,4 +1,5 @@
 bundle:
+  # TODO: Update this
   name: dbx-dabs-demo
 
 variables:
@@ -6,7 +7,8 @@ variables:
   warehouse_id:
     lookup:
       # Replace this with the name of your SQL warehouse.
-      warehouse: "dbdemos-shared-endpoint"
+      # TODO: Template This
+      warehouse: "Shared Endpoint"
       
   # Environment variable used for deployment paths
   environment:
@@ -23,14 +25,40 @@ resources:
   schemas:
       mining-processing-demo:
         name: mining_iop_demo
-        catalog_name: jack_demos
+        #TODO: Template This
+        catalog_name: adrian_tompkins
         comment: This schema was created by Databricks Asset Bundles.
+  
+  volumes:
+    raw_data:
+      catalog_name: ${resources.schemas.mining-processing-demo.catalog_name}
+      name: raw_data
+      schema_name: ${resources.schemas.mining-processing-demo.name}
 
-  apps:
-    demo_app:
-      name: "processing-demo-app"
-      description: "Simple Streamlit demo app"
-      source_code_path: "/Workspace/Users/${workspace.current_user.userName}/.bundle/${bundle.name}/${var.environment}/files/apps/src"
+  registered_models:
+    fe_model:
+      name: fe_model
+      catalog_name: ${resources.schemas.mining-processing-demo.catalog_name}
+      schema_name: ${resources.schemas.mining-processing-demo.name}
+      grants:
+        - privileges:
+            - EXECUTE
+          principal: account users
+    si_model:
+      name: si_model
+      catalog_name: ${resources.schemas.mining-processing-demo.catalog_name}
+      schema_name: ${resources.schemas.mining-processing-demo.name}
+      grants:
+        - privileges:
+            - EXECUTE
+          principal: account users
+
+
+#  apps:
+#    demo_app:
+#      name: "processing-demo-app"
+#      description: "Simple Streamlit demo app"
+#      source_code_path: "/Workspace/Users/${workspace.current_user.userName}/.bundle/${bundle.name}/${var.environment}/files/apps/src"
 
   dashboards:
     demo_dashboard:
@@ -43,27 +71,15 @@ resources:
     demo_workflow:
       name: "deploy-iops-demo-workflow"
       tasks:
-        - task_key: create-sql-objects
-          notebook_task:
-            notebook_path: "./notebooks/demo_setup/00a.create_sql_objects.ipynb"
-            source: WORKSPACE
         - task_key: create-data-files
           notebook_task:
             notebook_path: "./notebooks/demo_setup/00b.create_data_files.ipynb"
             source: WORKSPACE
-          depends_on:
-            - task_key: create-sql-objects
-        - task_key: create-deployment-job
-          notebook_task:
-            notebook_path: "./notebooks/demo_setup/02.create-deployment-job.py"
-            source: WORKSPACE
-          depends_on:
-            - task_key: create-data-files
         - task_key: run-demo-pipeline
           pipeline_task:
             pipeline_id: "${resources.pipelines.demo_pipeline.id}"
           depends_on:
-            - task_key: create-deployment-job
+            - task_key: create-data-files
         - task_key: run-governance-notebook
           notebook_task:
             notebook_path: "./notebooks/mining_iron_ore_processing_demo/01b. Unity Catalog, Governance and Auditability.ipynb"
