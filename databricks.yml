@@ -16,7 +16,6 @@ variables:
 targets:
   dev:
     default: true
-    mode: production
 
 # See more about resource configuration at https://docs.databricks.com/aws/en/dev-tools/bundles/resources
 resources:
