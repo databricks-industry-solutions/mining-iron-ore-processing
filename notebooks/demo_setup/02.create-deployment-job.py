@@ -4,7 +4,7 @@
 
 # COMMAND ----------
 
-# MAGIC %run ../../00.set_variables
+# MAGIC %run ../00.set_variables
 
 # COMMAND ----------
 
@@ -21,9 +21,9 @@ current_notebook_path = dbutils.entry_point.getDbutils().notebook().getContext()
 # Use pathlib to handle path manipulation robustly
 current_notebook_dir = Path(current_notebook_path).parent
 
-evaluation_notebook_path = f"{current_notebook_dir}/evaluation"
-approval_notebook_path = f"{current_notebook_dir}/approval"
-deployment_notebook_path = f"{current_notebook_dir}/deployment"
+evaluation_notebook_path = f"{current_notebook_dir}/model_deploy_jobs/evaluation"
+approval_notebook_path = f"{current_notebook_dir}/model_deploy_jobs/approval"
+deployment_notebook_path = f"{current_notebook_dir}/model_deploy_jobs/deployment"
 
 # COMMAND ----------
 
