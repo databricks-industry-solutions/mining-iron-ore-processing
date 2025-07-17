@@ -3,12 +3,16 @@ bundle:
   name: dbx-dabs-demo
 
 variables:
+  catalog_name:
+    description: "The name of the catalog to deploy to for this demo"
+    # !!! Replace with your catalog !!!
+    default: default # replace this default: <my_catalog>
+
   # The "warehouse_id" variable is used to reference the warehouse used by the dashboard.
   warehouse_id:
     lookup:
-      # Replace this with the name of your SQL warehouse.
-      # TODO: Template This
-      warehouse: "Shared Endpoint"
+      # !!! Replace this with the name of your SQL warehouse. !!!
+      warehouse: "Starter Warehouse" # replace this warehouse: <my_warehouse>
       
   # Environment variable used for deployment paths
   environment:
@@ -18,6 +22,7 @@ variables:
 targets:
   dev:
     default: true
+    mode: development
 
 # See more about resource configuration at https://docs.databricks.com/aws/en/dev-tools/bundles/resources
 resources:
@@ -25,8 +30,7 @@ resources:
   schemas:
       mining-processing-demo:
         name: mining_iop_demo
-        #TODO: Template This
-        catalog_name: adrian_tompkins
+        catalog_name: ${var.catalog_name}
         comment: This schema was created by Databricks Asset Bundles.
   
   volumes:
@@ -69,6 +73,15 @@ resources:
 # This is the installation workflow. It will be run when the bundle is deployed.
   jobs:
     demo_workflow:
+      parameters:
+        - name: catalog_name
+          default: ${resources.schemas.mining-processing-demo.catalog_name}
+        - name: schema_name
+          default: ${resources.schemas.mining-processing-demo.name}
+        - name: volume_name
+          default: ${resources.volumes.raw_data.name}
+        - name: load_config_from_file
+          default: "false"
       name: "deploy-iops-demo-workflow"
       tasks:
         - task_key: create-data-files
@@ -131,46 +144,13 @@ resources:
       configuration:
         catalog_name: ${resources.schemas.mining-processing-demo.catalog_name}
         schema_name: ${resources.schemas.mining-processing-demo.name}
-        volume_name: "mining_processing_demo_volume"
+        volume_name: ${resources.volumes.raw_data.name}
+
       libraries:
         - notebook:
             path: "notebooks/mining_iron_ore_processing_demo/01a. Data Engineering.ipynb"
       serverless: true
       photon: true
       development: true
-
-# Example resources you can uncomment and customize:
-# resources:
-#   apps:
-#     your_app:
-#       name: "your-app-name"
-#       description: "Your app description"
-#       source_code_path: "./apps/your_app"
-#
-#   jobs:
-#     your_workflow:
-#       name: "Your Workflow Name"
-#       tasks:
-#         - task_key: first_task
-#           notebook_task:
-#             notebook_path: "./notebooks/your_first_notebook.ipynb"
-#         - task_key: second_task
-#           depends_on:
-#             - task_key: first_task
-#           notebook_task:
-#             notebook_path: "./notebooks/your_second_notebook.ipynb"
-#
-#   pipelines:
-#     your_pipeline:
-#       name: "Your Pipeline"
-#       storage: "/Shared/your-pipeline"
-#       configuration:
-#         your_config: "value"
-#
-#
-#   dashboards:
-#     your_dashboard:
-#       display_name: "Your Dashboard"
-#       file_path: "./dashboards/your_dashboard.lvdash.json"
 
 # For more options and schema, see: https://docs.databricks.com/aws/en/dev-tools/bundles/settings
