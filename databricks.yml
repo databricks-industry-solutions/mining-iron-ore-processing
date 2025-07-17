@@ -56,7 +56,7 @@ resources:
             - task_key: create-sql-objects
         - task_key: create-deployment-job
           notebook_task:
-            notebook_path: "./notebooks/demo_setup/create-deployment-job.py"
+            notebook_path: "./notebooks/demo_setup/02.create-deployment-job.py"
             source: WORKSPACE
           depends_on:
             - task_key: create-data-files
