@@ -60,12 +60,17 @@ resources:
             source: WORKSPACE
           depends_on:
             - task_key: create-data-files
+        - task_key: run-demo-pipeline
+          pipeline_task:
+            pipeline_id: "${resources.pipelines.demo_pipeline.id}"
+          depends_on:
+            - task_key: create-deployment-job
         - task_key: run-governance-notebook
           notebook_task:
             notebook_path: "./notebooks/mining_iron_ore_processing_demo/01b. Unity Catalog, Governance and Auditability.ipynb"
             source: WORKSPACE
           depends_on:
-            - task_key: create-deployment-job
+            - task_key: run-demo-pipeline
         - task_key: run-eda-featurestore-notebook
           notebook_task:
             notebook_path: "./notebooks/mining_iron_ore_processing_demo/02. EDA and Feature Store.ipynb"
