@@ -2,17 +2,21 @@ bundle:
   # TODO: Update this
   name: dbx-dabs-demo
 
+########## Variables - Configure these to match your environment ##########
+
 variables:
   catalog_name:
     description: "The name of the catalog to deploy to for this demo"
-    # !!! Replace with your catalog !!!
+    #### Replace with your catalog ####
     default: default # replace this default: <my_catalog>
 
-  # The "warehouse_id" variable is used to reference the warehouse used by the dashboard.
+  # The "warehouse_id" variable is used to reference the warehouse used by the dashboard and genie space.
   warehouse_id:
     lookup:
-      # !!! Replace this with the name of your SQL warehouse. !!!
+      #### Replace this with the name of your SQL warehouse. ####
       warehouse: "Starter Warehouse" # replace this warehouse: <my_warehouse>
+
+########## End of Variables ##########
       
   # Environment variable used for deployment paths
   environment:
@@ -91,6 +95,7 @@ resources:
         - task_key: run-demo-pipeline
           pipeline_task:
             pipeline_id: "${resources.pipelines.demo_pipeline.id}"
+            full_refresh: true
           depends_on:
             - task_key: create-data-files
         - task_key: run-governance-notebook
