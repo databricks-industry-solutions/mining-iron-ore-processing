@@ -145,7 +145,6 @@ resources:
     demo_pipeline:
       name: "Mining Iron Ore Processing DLT Pipeline"
       catalog: ${resources.schemas.mining-processing-demo.catalog_name}
-      target: ${resources.schemas.mining-processing-demo.name}
       configuration:
         catalog_name: ${resources.schemas.mining-processing-demo.catalog_name}
         schema_name: ${resources.schemas.mining-processing-demo.name}
