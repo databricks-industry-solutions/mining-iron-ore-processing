@@ -141,6 +141,12 @@ resources:
             source: WORKSPACE
           depends_on:
             - task_key: run-model-creation-notebook
+        - task_key: create-databricks-app
+          notebook_task:
+            notebook_path: "./notebooks/demo_setup/04.create_app.ipynb"
+            source: WORKSPACE
+          depends_on:
+            - task_key: run-model-creation-notebook
 
   pipelines:
     demo_pipeline:
