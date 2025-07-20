@@ -134,25 +134,25 @@ resources:
             notebook_path: "./notebooks/demo_setup/05.create_serving_endpoints.ipynb"
             source: WORKSPACE
           depends_on:
-            - task_key: run-model-creation-notebook
+            - task_key: create-genie-space
         - task_key: run-optimization-notebook
           notebook_task:
             notebook_path: "./notebooks/mining_iron_ore_processing_demo/05. Optimisation.ipynb"
             source: WORKSPACE
           depends_on:
-            - task_key: run-model-creation-notebook
+            - task_key: create-genie-space
         - task_key: enable-anomaly-detection-classification
           notebook_task:
             notebook_path: "./notebooks/demo_setup/06.enable_data_classification_and_anomaly_detection.ipynb"
             source: WORKSPACE
           depends_on:
-            - task_key: run-model-creation-notebook
+            - task_key: create-genie-space
         - task_key: create-databricks-app
           notebook_task:
             notebook_path: "./notebooks/demo_setup/04.create_app.ipynb"
             source: WORKSPACE
           depends_on:
-            - task_key: run-model-creation-notebook
+            - task_key: create-genie-space
 
   pipelines:
     demo_pipeline:
