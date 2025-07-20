@@ -73,6 +73,7 @@ resources:
       display_name: "Demo Dashboard"
       file_path: "./dashboards/Fe Concentrator Prediction Dashboard.lvdash.json"
       warehouse_id: "${var.warehouse_id}"
+      embed_credentials: true
 
 # This is the installation workflow. It will be run when the bundle is deployed.
   jobs:

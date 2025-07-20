@@ -4,14 +4,14 @@
       "name": "ced5d677",
       "displayName": "gold_iron_ore_predictions",
       "queryLines": [
-        "SELECT * FROM ${var.catalog_name}.${resources.schemas.mining-processing-demo.name}.gold_iron_ore_predictions"
+        "SELECT * FROM ${resources.schemas.mining-processing-demo.catalog_name}.${resources.schemas.mining-processing-demo.name}.gold_iron_ore_predictions"
       ]
     },
     {
       "name": "feb2bc89",
       "displayName": "gold_iron_ore_optimisations",
       "queryLines": [
-        "SELECT *  FROM ${var.catalog_name}.${resources.schemas.mining-processing-demo.name}.gold_iron_ore_optimisations\n"
+        "SELECT *  FROM ${resources.schemas.mining-processing-demo.catalog_name}.${resources.schemas.mining-processing-demo.name}.gold_iron_ore_optimisations\n"
       ]
     }
   ],
