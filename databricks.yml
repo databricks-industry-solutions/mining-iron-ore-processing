@@ -105,12 +105,18 @@ resources:
             source: WORKSPACE
           depends_on:
             - task_key: run-demo-pipeline
+        - task_key: create-deployment-job
+          notebook_task:
+            notebook_path: "./notebooks/demo_setup/02.create-deployment-job.py"
+            source: WORKSPACE
+          depends_on:
+            - task_key: run-governance-notebook
         - task_key: run-eda-featurestore-notebook
           notebook_task:
             notebook_path: "./notebooks/mining_iron_ore_processing_demo/02. EDA and Feature Store.ipynb"
             source: WORKSPACE
           depends_on:
-            - task_key: run-governance-notebook
+            - task_key: create-deployment-job
         - task_key: run-model-creation-notebook
           notebook_task:
             notebook_path: "./notebooks/mining_iron_ore_processing_demo/03. Model Training and Experimentation.ipynb"
