@@ -4,7 +4,7 @@
 
 # COMMAND ----------
 
-# MAGIC %run ../00.set_variables
+# MAGIC %run ./_init
 
 # COMMAND ----------
 
