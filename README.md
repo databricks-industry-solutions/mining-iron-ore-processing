@@ -136,4 +136,5 @@ mining-iron-ore-processing/
 <div align="center">
   <h2>🚀 That's it! Enjoy the Demo! 🚀</h2>
   <p><em>Happy Mining & Optimizing! ⛏️✨</em></p>
+  <p><em>✨✨ With love from the West Aussie crew. #WestIsBest ✨✨</em></p>
 </div>
