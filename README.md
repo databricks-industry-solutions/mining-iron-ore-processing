@@ -1,47 +1,21 @@
-# Databricks Asset Bundles (DABs) Demo Template
+# Fe Concentrator Demo
 
-A clean, minimal template for migrating existing projects to Databricks Asset Bundles format.
+This demo will deploy and end to end AI and Optimisation solution for an Iron Ore Concentrator. This demo will be deployed using Databricks Asset Bundles (DAB's). 
 
 ## Quick Start
 
-1. **Prerequisites**
-   ```bash
-   pip install databricks-cli
-   ```
+## Workspace Setup
 
-2. **Configure Databricks**
-   ```bash
-   # Option A: Use databricks configure (interactive)
-   databricks configure
-   
-   # Option B: Use environment file (recommended for CI/CD)
-   cp env.example .env
-   # Edit .env with your Databricks workspace URL, token, and warehouse ID
-   # Get warehouse ID from: Databricks → SQL Warehouses → Copy warehouse ID
-   ```
+Firstly you will need to pull this Repo down into your Databricks Workspace as a Git Folder. 
 
-3. **Deploy Everything**
-   ```bash
-   ./scripts/deploy.sh
-   ```
+1. **Clone Repo to Workspace**:
+   - Workspace → Create → Git Folder
+   - Paste in the Repo https location
+   - click "Create"
 
-4. **Clean Up When Done**
-   ```bash
-   ./scripts/cleanup.sh
-   ```
-
-## CI/CD Setup (Optional)
-
-To enable automatic testing on Pull Requests:
-
-1. **Add GitHub Repository Secrets**:
-   - Go to your repo → Settings → Secrets and variables → Actions
-   - Add secret: `DATABRICKS_TOKEN` (your Databricks token)
-   - Optionally add variable: `DATABRICKS_HOST` (defaults to `https://e2-demo-field-eng.cloud.databricks.com/`)
-
-2. **What happens automatically**:
-   - **Pull Requests**: Validated and tested with isolated workspace paths
-   - **Main branch**: Deployed to your dev environment
+2. **Deploy via DABS in the UI**:
+   - Open the file databricks.yml from the root of the git repo
+   - Select the DABs icon in the side menu tray
    - **PR cleanup**: Resources automatically cleaned up when PR is closed
 
 ## What Gets Deployed
