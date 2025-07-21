@@ -35,7 +35,9 @@ Firstly you will need to pull this Repo down into your Databricks Workspace as a
 - **Dashboard**: `demo_dashboard` A simple dashboard of predictions vs actuals
 - **App**: `demo-app` A streamlit app to simulate Fe and Si output based on Plant set levels + infeed
 - **Pipeline**: `Mining Iron Ore Processing DLT Pipeline` a pipeline to ingest and transform our features
-
+- **Models**: `fe_model` and `si_model` two models that will be labelled champion, trained to predict concentrator output based on infeed and plant settings 
+- **Model Serving Endpoints**: Serving endpoints for the two models above, to be used by our Databricks App 
+- **Model Deployment Jobs**: CICD model deployment attached to our two models with an approval deployment step ahead of serving the models 
 
 ## Project Structure
 
@@ -56,4 +58,10 @@ Firstly you will need to pull this Repo down into your Databricks Workspace as a
     └── cleanup.sh          # Automated cleanup
 ```
 
-That's it! 🚀 
+`NOTE` the workflow to deploy will take ~20-25 minutes to finish, this is due to model training and optimization runs primarily. Please be patient and confirm the workflow has finished before your dive in!
+
+The Demo is contained primarily in a series of Notebooks under the directory `notebooks/mining_iron_ore_processing_demo`, start at Notebook `00. Introduction and Configuration` and continue down from there. 
+
+Make sure to always Run All in each notebook, as this will load demo cells and demonstrate normal workflows. 
+
+That's it! 🚀🚀🚀🚀🚀 Enjoy the Demo! 🚀🚀🚀🚀🚀
