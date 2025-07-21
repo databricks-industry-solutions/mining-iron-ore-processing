@@ -98,12 +98,10 @@ mining-iron-ore-processing/
 ├── 📊 dashboards/
 │   └── Fe Concentrator Prediction Dashboard.lvdash.json
 ├── 🖥️  apps/
-│   └── src/
-│       ├── app.py                       # Streamlit application
-│       └── app.yaml                     # App configuration
-└── 🔧 scripts/
-    ├── deploy.sh                        # Automated deployment
-    └── cleanup.sh                       # Automated cleanup
+    └── src/
+        ├── app.py                       # Streamlit application
+        └── app.yaml                     # App configuration
+
 ```
 
 ---
