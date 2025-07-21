@@ -1,6 +1,5 @@
 bundle:
-  # TODO: Update this
-  name: dbx-dabs-demo
+  name: mining-iop-demo
 
 ########## Variables - Configure these to match your environment ##########
 
