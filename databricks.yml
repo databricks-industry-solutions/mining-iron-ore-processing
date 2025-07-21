@@ -93,6 +93,12 @@ resources:
           notebook_task:
             notebook_path: "./notebooks/demo_setup/00b.create_data_files.ipynb"
             source: WORKSPACE
+        - task_key: create-databricks-app
+          notebook_task:
+            notebook_path: "./notebooks/demo_setup/04.create_app.ipynb"
+            source: WORKSPACE
+          depends_on:
+            - task_key: create-data-files
         - task_key: run-demo-pipeline
           pipeline_task:
             pipeline_id: "${resources.pipelines.demo_pipeline.id}"
@@ -128,36 +134,26 @@ resources:
             notebook_path: "./notebooks/demo_setup/03.create_genie_space.ipynb"
             source: WORKSPACE
           depends_on:
-            - task_key: run-eda-featurestore-notebook
+            - task_key: run-model-creation-notebook
         - task_key: create-serving-endpoints
           notebook_task:
             notebook_path: "./notebooks/demo_setup/05.create_serving_endpoints.ipynb"
             source: WORKSPACE
           depends_on:
-            - task_key: create-genie-space
             - task_key: run-model-creation-notebook
         - task_key: run-optimization-notebook
           notebook_task:
             notebook_path: "./notebooks/mining_iron_ore_processing_demo/05. Optimisation.ipynb"
             source: WORKSPACE
           depends_on:
-            - task_key: create-genie-space
             - task_key: run-model-creation-notebook
         - task_key: enable-anomaly-detection-classification
           notebook_task:
             notebook_path: "./notebooks/demo_setup/06.enable_data_classification_and_anomaly_detection.ipynb"
             source: WORKSPACE
           depends_on:
-            - task_key: create-genie-space
             - task_key: run-model-creation-notebook
-        - task_key: create-databricks-app
-          notebook_task:
-            notebook_path: "./notebooks/demo_setup/04.create_app.ipynb"
-            source: WORKSPACE
-          depends_on:
-            - task_key: create-genie-space
-            - task_key: run-model-creation-notebook
-
+            
   pipelines:
     demo_pipeline:
       name: "Mining Iron Ore Processing DLT Pipeline"
