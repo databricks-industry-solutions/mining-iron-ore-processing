@@ -26,7 +26,8 @@ variables:
 targets:
   dev:
     default: true
-    mode: development
+    presets:
+      source_linked_deployment: true
 
 # See more about resource configuration at https://docs.databricks.com/aws/en/dev-tools/bundles/resources
 resources:
