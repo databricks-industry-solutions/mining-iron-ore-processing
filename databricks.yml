@@ -8,13 +8,13 @@ variables:
   catalog_name:
     description: "The name of the catalog to deploy to for this demo"
     #### Replace with your catalog ####
-    default: jack_demos # replace this default: <my_catalog>
+    default: main # replace this default: <my_catalog>
 
   # The "warehouse_id" variable is used to reference the warehouse used by the dashboard and genie space.
   warehouse_id:
     lookup:
       #### Replace this with the name of your SQL warehouse. ####
-      warehouse: "dbdemos-shared-endpoint" # replace this warehouse: <my_warehouse>
+      warehouse: "Starter Warehouse" # replace this warehouse: <my_warehouse>
 
 ########## End of Variables ##########
       

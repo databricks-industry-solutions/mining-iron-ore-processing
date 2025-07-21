@@ -14,45 +14,41 @@ Firstly you will need to pull this Repo down into your Databricks Workspace as a
    - click "Create"
 
 2. **Deploy via DABS in the UI**:
-   - Open the file databricks.yml from the root of the git repo
-   - Select the DABs icon in the side menu tray
-   - **PR cleanup**: Resources automatically cleaned up when PR is closed
+   - **Edit DABs Config**- Open the file `databricks.yml` from the root of the git repo
+   - In the `databricks.yml` file, you will need to enter your `Catalog` name and desired `Warehouse` name as shown:
+
+   ![](notebooks/demo_setup/images/dabs_edit.png)
+   - **DABs UI**- Select the DABs icon in the side menu tray, its a small Rocket Ship icon as shown:
+
+   ![](notebooks/demo_setup/images/dabs_image.png)
+   - **Deploy**- Click the "deploy" button on the DABs UI as shown:
+
+   ![](notebooks/demo_setup/images/dabs_deploy.png)
+   - **Run Workflow**- Once your artifacts are deployed, run the workflow here to set up and run models and Optimizations:
+
+   ![](notebooks/demo_setup/images/dabs_run_job.png)
 
 ## What Gets Deployed
 
-- **Workflow**: `Databricks Demo Deployment Example - Two Simple Notebooks` 
-- **Notebooks**: `notebook1.ipynb` → `notebook2.ipynb` (sequential execution)
-- **Dashboard**: `Demo Dashboard` (deployed alongside notebooks)
-- **App**: `demo-app` (Simple Streamlit app)
-- **Location**: `/Workspace/Users/your-email@company.com/dbx-dabs-demo-dev/`
+- **Workflow**: `deploy-iops-demo-workflow` This is a workflow to deploy the models, run ingestion pipelines and deploy our Databricks App 
+- **Notebooks**: `notebooks/mining-iron-ore-processing/` → this director contains the main Demo notebooks and links to Demo content/objects
+- **Dashboard**: `demo_dashboard` A simple dashboard of predictions vs actuals
+- **App**: `demo-app` A streamlit app to simulate Fe and Si output based on Plant set levels + infeed
+- **Pipeline**: `Mining Iron Ore Processing DLT Pipeline` a pipeline to ingest and transform our features
 
-## Manual Commands (if you prefer)
-
-```bash
-databricks bundle validate    # Check configuration
-databricks bundle deploy      # Deploy to workspace
-databricks bundle run demo_workflow # Run the demo workflow
-databricks bundle summary     # See what's deployed
-databricks bundle destroy     # Remove everything
-```
-
-## Customizing for Your Project
-
-1. Update `databricks.yml` with your job/notebook names
-2. Replace `notebooks/notebook1.ipynb` and `notebooks/notebook2.ipynb` with your notebooks
-3. Modify the workspace `host` and `root_path` as needed
 
 ## Project Structure
 
 ```
 ├── databricks.yml           # Main DABs configuration
 ├── notebooks/
-│   ├── notebook1.ipynb      # First notebook
-│   └── notebook2.ipynb      # Second notebook (runs after first)
+│   ├── mining_iron_ore_processing      # Main Demo Entry Point (## go here to start ##)
+│   └── demo_setup                      # helper functions and resources to deploy the demo
+│   └── outputs                         # directory for model artifacts and outputs
 ├── dashboards/
-│   └── dashboard_example.lvdash.json  # Demo dashboard
+│   └── Fe Concentrator Prediction Dashboard.lvdash.json  # Demo dashboard
 ├── apps/
-│   └── demo_app/
+│   └── src/
 │       ├── app.py                     # Streamlit app
 │       └── app.yaml                   # App configuration
 └── scripts/
