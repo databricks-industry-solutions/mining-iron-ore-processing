@@ -8,13 +8,13 @@ variables:
   catalog_name:
     description: "The name of the catalog to deploy to for this demo"
     #### Replace with your catalog ####
-    default: default # replace this default: <my_catalog>
+    default: jack_demos # replace this default: <my_catalog>
 
   # The "warehouse_id" variable is used to reference the warehouse used by the dashboard and genie space.
   warehouse_id:
     lookup:
       #### Replace this with the name of your SQL warehouse. ####
-      warehouse: "Starter Warehouse" # replace this warehouse: <my_warehouse>
+      warehouse: "dbdemos-shared-endpoint" # replace this warehouse: <my_warehouse>
 
 ########## End of Variables ##########
       
@@ -70,9 +70,10 @@ resources:
 
   dashboards:
     demo_dashboard:
-      display_name: "Demo Dashboard"
+      display_name: "Demo Concentrator Dashboard"
       file_path: "./dashboards/Fe Concentrator Prediction Dashboard.lvdash.json"
       warehouse_id: "${var.warehouse_id}"
+      embed_credentials: true
 
 # This is the installation workflow. It will be run when the bundle is deployed.
   jobs:
@@ -92,6 +93,12 @@ resources:
           notebook_task:
             notebook_path: "./notebooks/demo_setup/00b.create_data_files.ipynb"
             source: WORKSPACE
+        - task_key: create-databricks-app
+          notebook_task:
+            notebook_path: "./notebooks/demo_setup/04.create_app.ipynb"
+            source: WORKSPACE
+          depends_on:
+            - task_key: create-data-files
         - task_key: run-demo-pipeline
           pipeline_task:
             pipeline_id: "${resources.pipelines.demo_pipeline.id}"
@@ -101,6 +108,12 @@ resources:
         - task_key: run-governance-notebook
           notebook_task:
             notebook_path: "./notebooks/mining_iron_ore_processing_demo/01b. Unity Catalog, Governance and Auditability.ipynb"
+            source: WORKSPACE
+          depends_on:
+            - task_key: run-demo-pipeline
+        - task_key: create-deployment-job
+          notebook_task:
+            notebook_path: "./notebooks/demo_setup/02.create-deployment-job.py"
             source: WORKSPACE
           depends_on:
             - task_key: run-demo-pipeline
@@ -140,12 +153,12 @@ resources:
             source: WORKSPACE
           depends_on:
             - task_key: run-model-creation-notebook
-
+            
   pipelines:
     demo_pipeline:
       name: "Mining Iron Ore Processing DLT Pipeline"
       catalog: ${resources.schemas.mining-processing-demo.catalog_name}
-      target: ${resources.schemas.mining-processing-demo.name}
+      schema: ${resources.schemas.mining-processing-demo.name}
       configuration:
         catalog_name: ${resources.schemas.mining-processing-demo.catalog_name}
         schema_name: ${resources.schemas.mining-processing-demo.name}
