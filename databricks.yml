@@ -85,6 +85,8 @@ resources:
           default: ${resources.schemas.mining-processing-demo.name}
         - name: volume_name
           default: ${resources.volumes.raw_data.name}
+        - name: dashboard_id
+          default: ${resources.dashboards.demo_dashboard.id}
         - name: load_config_from_file
           default: "false"
       name: "deploy-iops-demo-workflow"
