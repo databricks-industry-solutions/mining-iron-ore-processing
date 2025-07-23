@@ -11,7 +11,8 @@
 
 ### 📋 Prerequisites
 - Access to a Databricks workspace
-- Catalog and SQL Warehouse permissions
+- Catalog created and `USE CATALOG` permissions
+- SQL Warehouse created and permissions to use
 - Git repository access
 
 ---
@@ -42,7 +43,7 @@ Select the DABs icon (rocket ship) in the side menu:
 </div>
 
 #### 📦 **Deploy Resources**
-Click the **"Deploy"** button in the DABs UI:
+Click the **"Deploy"** button in the DABs UI when it pops up:
 
 <div align="center">
    <img src="notebooks/demo_setup/images/dabs_deploy.png" alt="DABs Deploy" width="700px"/>

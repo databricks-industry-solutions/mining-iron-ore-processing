@@ -15,6 +15,11 @@ variables:
       #### Replace this with the name of your SQL warehouse. ####
       warehouse: "Starter Warehouse" # replace this warehouse: <my_warehouse>
 
+  # The "prefix" variable is to differentiate assets when deployed multiple times per workspace
+  prefix:
+    description: "Prefix to be added to duplicate resources when deployed multiple times per workspace"
+    default: ""
+
 ########## End of Variables ##########
       
   # Environment variable used for deployment paths
@@ -158,7 +163,7 @@ resources:
             
   pipelines:
     demo_pipeline:
-      name: "Mining Iron Ore Processing DLT Pipeline"
+      name: "${var.prefix}Mining Iron Ore Processing DLT Pipeline"
       catalog: ${resources.schemas.mining-processing-demo.catalog_name}
       schema: ${resources.schemas.mining-processing-demo.name}
       configuration:
