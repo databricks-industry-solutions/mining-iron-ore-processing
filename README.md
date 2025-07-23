@@ -58,6 +58,53 @@ Once artifacts are deployed, run the workflow to set up models and optimizations
    <br/><em>Execute the deployment workflow</em>
 </div>
 
+### 3️⃣ **Deploy via DABs using CLI**
+
+#### 📥 **Install Databricks CLI**
+First, install the Databricks CLI on your local machine:
+
+```bash
+# Using pip
+pip install databricks-cli
+
+# Or using Homebrew (macOS)
+brew install databricks-cli
+
+# Or download from releases
+# https://github.com/databricks/cli/releases
+```
+
+#### 🔐 **Authenticate to Workspace**
+Configure authentication to your Databricks workspace:
+
+```bash
+# Configure authentication (you'll be prompted for host and token)
+databricks auth login
+
+# Or set up with specific host
+databricks auth login --host https://your-workspace.cloud.databricks.com
+```
+
+You'll need:
+- **Workspace URL**: Your Databricks workspace URL
+- **Personal Access Token**: Generate from User Settings → Developer → Access Tokens
+
+#### 🔧 **Configure DABs Settings**
+Edit the `databricks.yml` file to configure your `catalog_name` and `warehouse_id` settings as shown in the UI section above.
+
+#### 🚀 **Deploy the Bundle**
+Navigate to the project directory and deploy:
+
+```bash
+# Deploy the bundle (creates all resources)
+databricks bundle deploy
+
+# Run the demo workflow specifically
+databricks bundle run demo_workflow
+```
+
+> **💡 Tip**: The `demo_workflow` job includes all setup tasks including model training and optimization. This is equivalent to running the workflow via the UI.
+
 ---
 
 ## 📦 What Gets Deployed
