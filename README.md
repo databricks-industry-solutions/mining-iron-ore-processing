@@ -12,6 +12,7 @@
 ### 📋 Prerequisites
 - Access to a Databricks workspace
 - Catalog and SQL Warehouse permissions
+  - USE CATALOG, CREATE SCHEMA, 
 - Git repository access
 
 ---
