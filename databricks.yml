@@ -89,7 +89,7 @@ resources:
           default: ${resources.dashboards.demo_dashboard.id}
         - name: load_config_from_file
           default: "false"
-      name: "${workspace.current_user.userName | split '@' | first | replace '.' '_'} - deploy-iops-demo-workflow"
+      name: "${workspace.current_user.userName} - deploy-iops-demo-workflow"
       tasks:
         - task_key: create-data-files
           notebook_task:
@@ -100,7 +100,7 @@ resources:
             notebook_path: "./notebooks/demo_setup/04.create_app.ipynb"
             source: WORKSPACE
             base_parameters:
-              username: "${workspace.current_user.userName | split '@' | first | replace '.' '_'}"
+              username: "${workspace.current_user.userName}"
           depends_on:
             - task_key: create-data-files
         - task_key: run-demo-pipeline
@@ -144,7 +144,7 @@ resources:
             notebook_path: "./notebooks/demo_setup/05.create_serving_endpoints.ipynb"
             source: WORKSPACE
             base_parameters:
-              username: "${workspace.current_user.userName | split '@' | first | replace '.' '_'}"
+              username: "${workspace.current_user.userName}"
           depends_on:
             - task_key: run-model-creation-notebook
         - task_key: run-optimization-notebook
@@ -162,7 +162,7 @@ resources:
             
   pipelines:
     demo_pipeline:
-      name: "${workspace.current_user.userName | split '@' | first | replace '.' '_'} - Mining Iron Ore Processing DLT Pipeline"
+      name: "${workspace.current_user.userName} - Mining Iron Ore Processing DLT Pipeline"
       catalog: ${resources.schemas.mining-processing-demo.catalog_name}
       schema: ${resources.schemas.mining-processing-demo.name}
       configuration:
