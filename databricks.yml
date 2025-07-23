@@ -120,7 +120,7 @@ resources:
             - task_key: run-demo-pipeline
         - task_key: create-deployment-job
           notebook_task:
-            notebook_path: "./notebooks/demo_setup/02.create-deployment-job.py"
+            notebook_path: "./notebooks/demo_setup/02.create-deployment-job.ipynb"
             source: WORKSPACE
           depends_on:
             - task_key: run-demo-pipeline
