@@ -89,6 +89,8 @@ resources:
           default: ${resources.dashboards.demo_dashboard.id}
         - name: load_config_from_file
           default: "false"
+        - name: username
+          default: "${workspace.current_user.userName}"
       name: "${workspace.current_user.userName} - deploy-iops-demo-workflow"
       tasks:
         - task_key: create-data-files
