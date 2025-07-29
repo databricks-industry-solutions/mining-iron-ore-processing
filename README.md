@@ -14,6 +14,9 @@
 - Catalog and SQL Warehouse permissions
   - USE CATALOG, CREATE SCHEMA, 
 - Git repository access
+- Enable the following preview features in your workspace:
+  - **Data Classification**
+  - **Databricks Apps - On Behalf of Authentication**
 
 ---
 
