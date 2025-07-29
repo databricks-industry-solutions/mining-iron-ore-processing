@@ -33,7 +33,7 @@
 Open the `databricks.yml` file from the root of the git repo and configure your `Catalog` name and desired `Warehouse` name:
 
 <div align="center">
-   <img src="notebooks/demo_setup/images/dabs_edit.png" alt="DABs Configuration" width="800px"/>
+   <img src="notebooks/demo_setup/images/dabs-edit.png" alt="DABs Configuration" width="800px"/>
    <br/><em>Configure your catalog and warehouse settings</em>
 </div>
 
@@ -41,7 +41,7 @@ Open the `databricks.yml` file from the root of the git repo and configure your 
 Select the DABs icon (rocket ship) in the side menu:
 
 <div align="center">
-   <img src="notebooks/demo_setup/images/dabs_image.png" alt="DABs UI Icon" width="600px"/>
+   <img src="notebooks/demo_setup/images/dabs-image.png" alt="DABs UI Icon" width="600px"/>
    <br/><em>Locate the DABs rocket ship icon</em>
 </div>
 
@@ -49,7 +49,7 @@ Select the DABs icon (rocket ship) in the side menu:
 Click the **"Deploy"** button in the DABs UI:
 
 <div align="center">
-   <img src="notebooks/demo_setup/images/dabs_deploy.png" alt="DABs Deploy" width="700px"/>
+   <img src="notebooks/demo_setup/images/dabs-deploy.png" alt="DABs Deploy" width="700px"/>
    <br/><em>Deploy your bundle resources</em>
 </div>
 
@@ -57,7 +57,7 @@ Click the **"Deploy"** button in the DABs UI:
 Once artifacts are deployed, run the workflow to set up models and optimizations:
 
 <div align="center">
-   <img src="notebooks/demo_setup/images/dabs_run_job.png" alt="Run Workflow" width="700px"/>
+   <img src="notebooks/demo_setup/images/dabs-run-job.png" alt="Run Workflow" width="700px"/>
    <br/><em>Execute the deployment workflow</em>
 </div>
 
