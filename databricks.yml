@@ -21,7 +21,7 @@ variables:
     #### Replace this with the ID of your prefered policy. Go to Workspace->Settings->Compute->Policies ####
     default: "" # replace this with the ID of your prefered policy, eg "########-####-####-####-############"
 
- # The "usage_policy_id" variable is used to reference the usage policy used by the data classification process.
+ # The "dataset_year" variable is used to update the year of the dataset used for this demo.
   dataset_year:
     description: "The year to update the dataset for this demo"
     #### Replace the desired starting year for the dataset ####
